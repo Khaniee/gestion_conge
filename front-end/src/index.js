@@ -4,8 +4,16 @@ import './index.css';
 import App from './App';
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import reportWebVitals from './reportWebVitals';
+
+
 import Login from './components/Login'
+import HistoriqueAbscence from './components/HistoriqueAbscence'
 import DemandeAbscence from './components/DemandeAbscence'
+import ValidationAbscence from './components/ValidationAbscence'
+import Employees from './components/Employees'
+import HistoriqueMesAbscence from './components/HistoriqueMesAbscence'
+
+
 import {BrowserRouter, Routes, Route} from 'react-router-dom'
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -14,9 +22,10 @@ root.render(
 <Routes>
   <Route path="/" element={<Login/>}/>
   <Route path="/demandeAbscence" element={<DemandeAbscence/>}/>
-   {/*  <Route path="/historiqueAbscence" element={<HistoriqueAbscence/>}/>
-  <Route path="/validationAbscence" element={<ValidationAbscence/>}/>
-  <Route path="/employees" element={<Employees/>}/> */}
+  <Route path="/historiqueAbscence" element={<HistoriqueAbscence/>}/>
+  <Route path="/historiqueMesAbscence" element={<HistoriqueMesAbscence/>}/>
+  <Route path="/validationDemande" element={<ValidationAbscence/>}/>
+  <Route path="/employees" element={<Employees/>}/>
 </Routes>
 </BrowserRouter>
 );

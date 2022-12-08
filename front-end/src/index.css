@@ -23,7 +23,7 @@ code {
 }
 .navbar-fixed{
   width: 100%;
-  position: fixed;
+  position: relative;
   top: 0;
 }
 .card:hover{
