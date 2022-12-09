@@ -20,6 +20,24 @@ def add_employee(demande: EmployeesIn, db: Session) -> dict:
 
     return result
 
+def update_employee(db_session: Session, employee_id: int, employee_data: EmployeesIn):
+    query = db_session.query(Employees)
+    query = query.filter(Employees.id == employee_id)
+    record: Employees = query.one()
+    
+    record.firstname = employee_data.firstname
+    record.lastname = employee_data.lastname
+    record.job = employee_data.job
+    record.adress = employee_data.adress
+    record.contact = employee_data.contact
+    record.id_user = employee_data.id_user
+    
+    db_session.commit()
+    
+    result = {"status": "success", "message": "update effectué avec succes"}
+
+    return result
+
 # def addEmployee(demande: EmployeesOut, db: Session) -> dict:
 #     demandes = Employees(**demande.dict())
 #     db.add(demandes)

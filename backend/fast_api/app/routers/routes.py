@@ -16,11 +16,11 @@ router = APIRouter(
 )
 
 @router.get("/employees")
-async def employees(db: Session = Depends(get_db)) -> dict:
+async def get_employees(db: Session = Depends(get_db)) -> dict:
     return all_employee(db)
 
 @router.post('/employees')
-async def employees(demande: EmployeesIn, db: Session = Depends(get_db)) -> dict:
+async def create_employees(demande: EmployeesIn, db: Session = Depends(get_db)) -> dict:
     result = add_employee(demande, db)
     return result
 
