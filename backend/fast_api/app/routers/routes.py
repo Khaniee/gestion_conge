@@ -16,30 +16,30 @@ router = APIRouter(
 )
 
 @router.get("/employees")
-async def get_employees(db: Session = Depends(get_db)) -> dict:
-    return all_employee(db)
+async def get_employees(db_session: Session = Depends(get_db)) -> dict:
+    return all_employee(db_session)
 
 @router.post('/employees')
-async def create_employees(demande: EmployeesIn, db: Session = Depends(get_db)) -> dict:
-    result = add_employee(demande, db)
+async def create_employees(demande: EmployeesIn, db_session: Session = Depends(get_db)) -> dict:
+    result = add_employee(demande, db_session)
     return result
 
 @router.get("/users")
-async def users(db: Session = Depends(get_db)) -> dict:
-    return all_user(db)
+async def get_users(db_session: Session = Depends(get_db)) -> dict:
+    return all_user(db_session)
 
 @router.post('/users')
-async def users(demande: UsersIn, db: Session = Depends(get_db)) -> dict:
-    result = add_user(demande, db)
+async def create_users(demande: UsersIn, db_session: Session = Depends(get_db)) -> dict:
+    result = add_user(demande, db_session)
     return result
 
 @router.get("/abscences")
-async def abscences(db: Session = Depends(get_db)) -> dict:
+async def get_abscences(db: Session = Depends(get_db)) -> dict:
     return all_abscence(db)
 
 @router.post('/abscences')
-async def abscences(demande: AbscencesIn, db: Session = Depends(get_db)) -> dict:
-    result = add_abscence(demande, db)
+async def create_abscences(demande: AbscencesIn, db_session: Session = Depends(get_db)) -> dict:
+    result = add_abscence(demande, db_session)
     return result
 
 # @router.get("/abscences")

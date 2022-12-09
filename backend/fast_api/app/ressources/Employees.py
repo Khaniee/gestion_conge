@@ -38,6 +38,18 @@ def update_employee(db_session: Session, employee_id: int, employee_data: Employ
 
     return result
 
+def remove_employee(db_session: Session, employee_id: int):
+    query = db_session.query(Employees)
+    query = query.filter(Employees.id == employee_id)
+    record: Employees = query.one()
+    
+    db_session.delete(record)
+    db_session.commit()
+    
+    result = {"status": "success", "message": "delete effectué avec succes"}
+
+    return result
+
 # def addEmployee(demande: EmployeesOut, db: Session) -> dict:
 #     demandes = Employees(**demande.dict())
 #     db.add(demandes)
