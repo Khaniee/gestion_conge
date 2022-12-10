@@ -16,6 +16,18 @@ def all_employee(db: Session) -> dict:
     result = {"status": "success","message" : "affichage effectué avec succes","data":liste}
     return result
 
+def one_employee(id : int, db: Session) -> dict:
+    query = db.query(Employees)
+    query = query.filter(Employees.id == id)
+    liste : Employees = query.one()
+    query = db.query(Users)
+    query = query.filter(Users.id == liste.id_user)
+    liste.user : Users = query.one()
+    del liste.id_user
+    db.close()
+    result = {"status": "success","message" : "affichage effectué avec succes","data":liste}
+    return result
+        
 def add_employee(demande: EmployeesIn, db: Session) -> dict:
     demandes = Employees(**demande.dict())
     db.add(demandes)

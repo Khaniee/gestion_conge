@@ -22,6 +22,18 @@ def add_abscence(demande : AbscencesIn, db : Session) -> dict:
     result = {"status": "success", "message": "ajout effectué avec succes"}
     return result
 
+def one_abscence(id : int, db: Session) -> dict:
+    query = db.query(Abscence)
+    query = query.filter(Abscence.id == id)
+    liste : Abscence = query.one()
+    query = db.query(Employees)
+    query = query.filter(Employees.id == liste.id_employee)
+    liste.employee : Employees = query.one()
+    del liste.id_employee
+    db.close()
+    result = {"status": "success","message" : "affichage effectué avec succes","data":liste}
+    return result
+
 def update_abscence( abscence_id: int, abscence_data: AbscencesIn, db_session: Session):
     query = db_session.query(Abscence)
     query = query.filter(Abscence.id == abscence_id)

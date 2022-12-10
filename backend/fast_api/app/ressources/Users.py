@@ -9,6 +9,14 @@ def all_user(db : Session) -> dict:
     result = {"status": "success","message" : "affichage effectué avec succes","data":liste}
     return result
 
+def one_user(id : int, db: Session) -> dict:
+    query = db.query(Users)
+    query = query.filter(Users.id == id)
+    liste : Users = query.one()
+    db.close()
+    result = {"status": "success","message" : "affichage effectué avec succes","data":liste}
+    return result
+
 def add_user(demande: UsersIn, db : Session) -> dict:
     demandes = Users(**demande.dict())
     db.add(demandes)
