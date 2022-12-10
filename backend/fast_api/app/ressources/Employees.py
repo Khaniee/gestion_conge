@@ -1,15 +1,20 @@
 from app.schemas.Employees import EmployeesIn, EmployeesOut
 from app.database.Employees import Employees
+from app.database.Users import Users
 
 from sqlalchemy.orm import Session
 # from fastapi import status
 
 def all_employee(db: Session) -> dict:
     liste = db.query(Employees).all()
+    for elt in liste:
+        query = db.query(Users)
+        query = query.filter(Users.id == elt.id_user)
+        elt.user : Users = query.one()
+        del elt.id_user
     db.close()
     result = {"status": "success","message" : "affichage effectué avec succes","data":liste}
     return result
-
 
 def add_employee(demande: EmployeesIn, db: Session) -> dict:
     demandes = Employees(**demande.dict())
@@ -24,7 +29,6 @@ def update_employee( employee_id: int, employee_data: EmployeesIn, db_session: S
     query = db_session.query(Employees)
     query = query.filter(Employees.id == employee_id)
     record: Employees = query.one()
-    
     record.firstname = employee_data.firstname
     record.lastname = employee_data.lastname
     record.job = employee_data.job
