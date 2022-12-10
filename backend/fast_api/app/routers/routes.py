@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
 from app.database.database import get_db
-from app.ressources.Employees import all_employee, add_employee
+from app.ressources.Employees import all_employee, add_employee, update_employee
 from app.ressources.Users import all_user, add_user
 from app.ressources.Abscences import all_abscence, add_abscence
 
@@ -24,6 +24,11 @@ async def create_employees(demande: EmployeesIn, db: Session = Depends(get_db)) 
     result = add_employee(demande, db)
     return result
 
+@router.post('/employees/{id}')
+async def create_employees(id: int, demande: EmployeesIn, db: Session = Depends(get_db)) -> dict:
+    result = update_employee(id, demande, db)
+    return result
+
 @router.get("/users")
 async def users(db: Session = Depends(get_db)) -> dict:
     return all_user(db)
@@ -41,6 +46,7 @@ async def abscences(db: Session = Depends(get_db)) -> dict:
 async def abscences(demande: AbscencesIn, db: Session = Depends(get_db)) -> dict:
     result = add_abscence(demande, db)
     return result
+
 
 # @router.get("/abscences")
 # async def getAbscences(db: Session = Depends(get_db)) -> dict:
