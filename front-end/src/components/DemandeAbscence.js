@@ -15,32 +15,42 @@ class DemandeAbscence extends Component{
         }
 
     }
-    submit(e){
+    /**
+     * 
+     * @param {Any} data - Data passed is not stringified, and will be stringified inside the function
+     * @returns - Json response of the call
+     */
+    postDemandeAbscence = async (data) => {
+        const url = "http://localhost:8000/api/abscences/"
+        return fetch(url, {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        });
+    }
+    submit = async (e) => {
         e.preventDefault()
         let array = $('#demandeForm').serializeArray()
         let final_array = {}
         $.map(array, (n,i)=>{
             final_array[n['name']] = n['value']
         })
-        // console.log(test)
-        let data = JSON.stringify(final_array)
-        console.log(data)
-        const url = "http://localhost:8000/api/abscences/"
-        $.ajax({
-            type: "POST",
-            url: url,
-            data: final_array,
-            dataType: 'application/json',
-            success: ()=>{
-                alert('ok')
+        try {
+            const rawResponse = await this.postDemandeAbscence(final_array);
+            const response = await rawResponse.json();
+        
+            if (!rawResponse.ok) {
+                console.log("error_detail :", response)
+                throw new Error("error has occured");
             }
-        })
-        // fetch(url, {
-        //     method: 'POST',
-        //     mode : 'cors',
-        //     body : data
-        // })
-        alert("success")
+            console.log(response);
+            alert("success")
+        } catch (err) {
+            console.log("error catched", err);
+        }
     }
     render(){
         // const [id_employee, setid_employee] = useState([])
