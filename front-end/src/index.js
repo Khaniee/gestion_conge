@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from './App';
-import * as serviceWorkerRegistration from './serviceWorkerRegistration';
+// import App from './App';
+// import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import reportWebVitals from './reportWebVitals';
 
 
@@ -25,7 +25,7 @@ root.render(
   <Route path="/historiqueAbscence" element={<HistoriqueAbscence/>}/>
   <Route path="/historiqueMesAbscence" element={<HistoriqueMesAbscence/>}/>
   <Route path="/validationDemande" element={<ValidationAbscence/>}/>
-  <Route path="/employees" element={<Employees/>}/>
+  <Route path="/employees" element={<Employees/>}/> 
 </Routes>
 </BrowserRouter>
 );
