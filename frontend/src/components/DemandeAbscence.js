@@ -44,17 +44,7 @@ class DemandeAbscence extends Component{
         
             if (!rawResponse.ok) {
                 console.log("error_detail :", response)
-                
-                // OK
-                // throw new Error("error has occured");
-                
-                // OK ?
-                // eslint-disable-next-line no-throw-literal
-                throw {
-                    name: "ERROR",
-                    message: "SOMETHING GONE BAD (-_-)",
-                    extra: response,
-                }
+                throw new Error("error has occured");
             }
             console.log(response);
             alert("success")
