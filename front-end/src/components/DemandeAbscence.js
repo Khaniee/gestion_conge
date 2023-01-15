@@ -1,17 +1,21 @@
 import { Component } from "react";
-// import { useState } from "react";
 import Header from './Header'
 import $ from 'jquery'
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content'
+
+const MySwal = withReactContent(Swal)
 
 class DemandeAbscence extends Component{
     constructor(props){
         super(props)
         this.state = {
-            id_employee : "",
-            date_demande : "",
-            date_debut : "",
-            date_fin : "",
-            motif : ""
+            // id_employee : "",
+            // date_demande : "",
+            // date_debut : "",
+            // date_fin : "",
+            // motif : "",
+            employees : []
         }
 
     }
@@ -31,6 +35,12 @@ class DemandeAbscence extends Component{
             body: JSON.stringify(data)
         });
     }
+    componentDidMount = ()=>{
+        const url= "http://localhost:8000/api/employees/"
+        fetch(url)
+            .then((res) => res.json())
+            .then((data) => this.setState({employees: data["data"]}))
+    } 
     submit = async (e) => {
         e.preventDefault()
         let array = $('#demandeForm').serializeArray()
@@ -47,17 +57,22 @@ class DemandeAbscence extends Component{
                 throw new Error("error has occured");
             }
             console.log(response);
-            alert("success")
+            
+            MySwal.fire(
+                "insertion effectué avec succès",
+                "",
+                "success"
+            )
         } catch (err) {
-            console.log("error catched", err);
+            MySwal.fire(
+                "erreur lors de l'insertion",
+                err,
+                "error"
+            )
         }
     }
     render(){
-        // const [id_employee, setid_employee] = useState([])
-        // const [date_demande, setdate_demande] = useState([])
-        // const [date_debut, setdate_debut] = useState([])
-        // const [date_fin, setdate_fin] = useState([])
-        // const [motif, setmotif] = useState([])
+        const {employees} = this.state
         return(
             <div>
                 <Header />
@@ -69,7 +84,11 @@ class DemandeAbscence extends Component{
                         <div className="card-body">
                             <form className="form" onSubmit={this.submit} id="demandeForm">
                                 <label className="form-label">Nom</label>
-                                <input type="text" className="form-control" name="id_employee"></input>
+                                <select className="form-control" name="id_employee" id="">
+                                    {employees.map(e=>(
+                                            <option value={e.id}>{e.lastname+" "+e.firstname}</option>
+                                    ))}
+                                </select>
                                 <label className="form-label">date de la demande</label>
                                 <input type="date" className="form-control" name="date_demande"></input>
                                 <label className="form-label">date de début abscence</label>

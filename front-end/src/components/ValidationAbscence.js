@@ -1,21 +1,28 @@
 import { Component } from "react";
 import Header from "./Header";
-
+import {useEffect} from 'react';
 class ValidationAbscence extends Component{
     constructor(props){
         super(props)
         this.state={
-            id : "",
-            name : "",
-            date_demande : "",
-            date_debut : "",
-            date_fin : "",
-            motif : "",
-            valide : ""
+            // id : "",
+            // name : "",
+            // date_demande : "",
+            // date_debut : "",
+            // date_fin : "",
+            // motif : "",
+            // valide : ""
+            abscences : []
         }
     }
-
+    componentDidMount = ()=>{
+        const url= "http://localhost:8000/api/abscences/"
+        fetch(url)
+            .then((res) => res.json())
+            .then((data) => this.setState({abscences: data["data"]}))
+    } 
     render(){
+        const {abscences}= this.state
         return(
             <div>
                 <Header />
@@ -29,6 +36,7 @@ class ValidationAbscence extends Component{
                                 <tr>
                                     <th>#</th>
                                     <th>Nom</th>
+                                    <th>Date de demande</th>
                                     <th>Date début</th>
                                     <th>Date fin</th>
                                     <th>Motif</th>
@@ -37,12 +45,14 @@ class ValidationAbscence extends Component{
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>Tsitana Khanie</td>
-                                    <td>20 Juin 2004</td>
-                                    <td>20 Juin 2023</td>
-                                    <td>Fatigue</td>
+                                {abscences.map((e)=>(
+                                    <tr>
+                                    <td>{e.id}</td>
+                                    <td>{e.employee.lastname+" "+e.employee.firstname}</td>
+                                    <td>{e.date_demande}</td>
+                                    <td>{e.date_debut}</td>
+                                    <td>{e.date_fin}</td>
+                                    <td>{e.motif}</td>
                                     <td>
                                         <button type="button" className="btn btn-primary btn-sm">
                                             Accepter
@@ -54,6 +64,7 @@ class ValidationAbscence extends Component{
                                         </button>
                                     </td>
                                 </tr>
+                            ))}
                             </tbody>
                         </table>
                     </div>
