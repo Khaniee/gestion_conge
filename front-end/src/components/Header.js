@@ -20,7 +20,10 @@ class Header extends Component{
                         <NavLink className="nav-link" to="/historiqueMesAbscence">Historique de mes abscences</NavLink>
                     </li>
                     <li className="nav-item">
-                        <Link className="nav-link" to="/employees">Gestion des employées</Link>
+                        <NavLink className="nav-link" to="/abscences">Liste des abscences</NavLink>
+                    </li>
+                    <li className="nav-item">
+                        <NavLink className="nav-link" to="/employees">Gestion des employées</NavLink>
                     </li>
                     
                 </ul>
