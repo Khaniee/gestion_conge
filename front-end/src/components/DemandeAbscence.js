@@ -43,19 +43,22 @@ class DemandeAbscence extends Component{
             .then((data) => this.setState({employees: data["data"]}))
     } 
     send = ()=>{
-        let env = document.querySelector(".wrapper");
+        let env = document.querySelector(".envelope");
         let envPos = env.getBoundingClientRect()
         let boite = document.querySelector("#boite")
         let boitePos = boite.getBoundingClientRect();
         let wrapper = document.querySelector(".wrapper");
         let demandeForm = document.querySelector("#demandeForm");
-        let old = { ... env.style };
+        let old = { ... wrapper.style };
         
         wrapper.classList.add("wrapperClose")
         wrapper.classList.remove("wrapper")
         setTimeout(() => { 
-            env.classList.add("send")
-            env.style.transform = `translateY(${(boitePos.top - envPos.top)}px) translateX(${(boitePos.right - envPos.right)}px) perspective(50px) translateZ(-200px) `
+            wrapper.classList.add("send")
+            wrapper.style.transform = `translateY(${(boitePos.top - envPos.top)}px) translateX(${(boitePos.right - envPos.right + 200)}px) perspective(50px) translateZ(-200px) `
+            // alert(env.getBoundingClientRect().right)
+            // 797
+            // 764.5
         }, 1200);   
         setTimeout(() => { 
             MySwal.fire(
@@ -64,8 +67,8 @@ class DemandeAbscence extends Component{
                 "success"
             ).then(()=>{
                 setTimeout(() => { 
-                    env.classList.remove("send")
-                    env.style = old;
+                    wrapper.classList.remove("send")
+                    wrapper.style = old;
                     wrapper.classList.add("wrapper")
                     wrapper.classList.remove("wrapperClose")
                 }, 500); 
