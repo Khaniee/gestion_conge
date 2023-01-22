@@ -24,12 +24,12 @@ async def main(demande: AbscencesIn, db_session: Session = Depends(get_db)) -> d
     result = add_abscence(demande, db_session)
     return result
 
-@router.post('/abscences/edit/{id}')
+@router.put('/abscences/{id}')
 async def main(id: int, demande: AbscencesIn, db: Session = Depends(get_db)) -> dict:
     result = update_abscence(id, demande, db)
     return result
 
-@router.post('/abscences/drop/{id}')
+@router.delete('/abscences/{id}')
 async def main(id:int, db: Session = Depends(get_db))-> dict:
     result = remove_abscence(db , id)
     return result

@@ -181,13 +181,13 @@ class Employees extends Component {
                                         <td>{ employee.contact }</td>
                                         <td>
                                             <Button
-                                                className="mx-2"
+                                                className="mx-1"
                                                 level={ BUTTON_TYPE.WARNING }
                                                 onClick={ () => this.onUpdateEmployeeClick(employee.id) }
                                                 label="modifier"
                                             />
                                             <Button
-                                                className="mx-2"
+                                                className="mx-1"
                                                 level={ BUTTON_TYPE.DANGER }
                                                 onClick={ () => this.onDeleteEmployeeClick(employee.id) }
                                                 label="supprimer"

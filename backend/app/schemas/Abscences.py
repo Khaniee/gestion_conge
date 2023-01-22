@@ -1,5 +1,12 @@
+from enum import Enum
+
 from pydantic import BaseModel
 from datetime import date
+
+class AbscencesStatus(str, Enum):
+    ACCEPTED = "accepted"
+    REJECTED = "rejected"
+    PENDING = "pending"
 
 class Abscences(BaseModel):
     date_demande : date
@@ -7,7 +14,7 @@ class Abscences(BaseModel):
     date_debut : date
     date_fin : date
     id_employee : int 
-    valide : str
+    valide : AbscencesStatus
 
 class AbscencesIn(Abscences):
     pass

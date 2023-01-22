@@ -5,14 +5,13 @@ from app.schemas.Abscences import AbscencesIn, AbscencesOut
 from sqlalchemy.exc import NoResultFound
 
 def all_abscence(db : Session) -> dict:
-    liste = db.query(Abscence).all()
+    liste = db.query(Abscence).order_by(Abscence.id).all()
     for elt in liste:
         query = db.query(Employees).filter(Employees.id == elt.id_employee)
         try:
             elt.employee : Employees = query.one()
         except NoResultFound:
             elt.employee = None
-        del elt.id_employee
     db.close()
     result = {"status": "success","message" : "affichage effectué avec succes","data":liste}
     return result
