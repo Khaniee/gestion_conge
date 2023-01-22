@@ -1,7 +1,5 @@
 import { Component } from "react";
 
-import Header from "./Header";
-
 import { 
     getEmployees,
     postEmployee,
@@ -155,160 +153,157 @@ class Employees extends Component {
     }
     render(){
         return(
-            <div>
-                <Header />
-                <div className="row m-3">
-                    <div className="col-9">
-                        <div className="card">
-                            <div className="card-header">
-                                Liste des Employees
-                            </div>
-                            <div className="card-body table-responsive">
-                                <table className="table table-head-fixed table-striped table-hover table-sm">
-                                    <thead>
-                                        <tr>
-                                            <th>#</th>
-                                            <th>Nom & Prenom</th>
-                                            <th>Poste</th>
-                                            <th>Adresse</th>
-                                            <th>Contact</th>
-                                            <th></th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                    { this.state.employees.map((employee) => (
-                                        <tr key={ employee.id }>
-                                            <td>{ employee.id }</td>
-                                            <td>{ employee.firstname } { employee.lastname }</td>
-                                            <td>{ employee.job }</td>
-                                            <td>{ employee.adress }</td>
-                                            <td>{ employee.contact }</td>
-                                            <td>
-                                                <Button
-                                                    className="mx-2"
-                                                    level={ BUTTON_TYPE.WARNING }
-                                                    onClick={ () => this.onUpdateEmployeeClick(employee.id) }
-                                                    label="modifier"
-                                                />
-                                                <Button
-                                                    className="mx-2"
-                                                    level={ BUTTON_TYPE.DANGER }
-                                                    onClick={ () => this.onDeleteEmployeeClick(employee.id) }
-                                                    label="supprimer"
-                                                />
-                                            </td>
-                                        </tr>
-                                    ))}
-                                    </tbody>
-                                </table>
-                            </div>
+            <div className="row m-3">
+                <div className="col-9">
+                    <div className="card">
+                        <div className="card-header">
+                            Liste des Employees
                         </div>
-                    </div>
-                    
-                    <div className="col">
-                        <div className="card">
-                            <div className="card-header d-flex justify-content-between">
-                                <span>
-                                    { this.state.employee.id ? 'Modification Employée' : 'Creation Employée'}
-                                </span>
-                                <Button
-                                    level={ BUTTON_TYPE.SECONDARY }
-                                    onClick={ this.onResetEmployeeClick }
-                                    label="reset"
-                                />
-                            </div>
-                            <div className="card-body">
-                                <form onSubmit={ this.handleFormSubmit }>
-                                    <div className="form-group row">
-                                        <label className="form-label">First Name:</label>
-                                        <div className="">
-                                            <input 
-                                                type="text" 
-                                                className="form-control" 
-                                                value={this.state.employee.firstname}
-                                                onChange={this.handleFirstNameChange}
-                                                required
-                                            />
-                                        </div>
-                                    </div>
-                                    <div className="form-group row">
-                                        <label className="form-label">Last Name:</label>
-                                        <div className="">
-                                        <input 
-                                            type="text" 
-                                            className="form-control" 
-                                            value={this.state.employee.lastname}
-                                            onChange={this.handleLastNameChange}
-                                            required
-                                        />
-                                        </div>
-                                    </div>
-                                    <div className="form-group row">
-                                        <label className="form-label">Job:</label>
-                                        <div className="">
-                                        <input 
-                                            type="text" 
-                                            className="form-control" 
-                                            value={this.state.employee.job}
-                                            onChange={this.handleJobChange}
-                                            required
-                                        />
-                                        </div>
-                                    </div>
-                                    <div className="form-group row">
-                                        <label className="form-label">Contact:</label>
-                                        <div className="">
-                                        <input 
-                                            type="text" 
-                                            className="form-control" 
-                                            value={this.state.employee.contact}
-                                            onChange={this.handleContactChange}
-                                            required
-                                        />
-                                        </div>
-                                    </div>
-                                    <div className="form-group row">
-                                        <label className="form-label">Adresse:</label>
-                                        <div className="">
-                                        <input 
-                                            type="text" 
-                                            className="form-control" 
-                                            value={this.state.employee.adress}
-                                            onChange={this.handleAdressChange}
-                                            required
-                                        />
-                                        </div>
-                                    </div>
-                                    <div className="form-group row mt-2">
-                                    { this.state.employee.id ?
-                                        <div className="d-flex justify-content-end gap-2">
+                        <div className="card-body table-responsive">
+                            <table className="table table-head-fixed table-striped table-hover table-sm">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Nom & Prenom</th>
+                                        <th>Poste</th>
+                                        <th>Adresse</th>
+                                        <th>Contact</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                { this.state.employees.map((employee) => (
+                                    <tr key={ employee.id }>
+                                        <td>{ employee.id }</td>
+                                        <td>{ employee.firstname } { employee.lastname }</td>
+                                        <td>{ employee.job }</td>
+                                        <td>{ employee.adress }</td>
+                                        <td>{ employee.contact }</td>
+                                        <td>
                                             <Button
-                                                type="submit"
-                                                value={ ACTION.UPDATE }
+                                                className="mx-2"
+                                                level={ BUTTON_TYPE.WARNING }
+                                                onClick={ () => this.onUpdateEmployeeClick(employee.id) }
                                                 label="modifier"
                                             />
-                                        </div>
-                                    : 
-                                        <div className="d-flex justify-content-end gap-2">
                                             <Button
-                                                type="submit"
-                                                value={ ACTION.CREATE_AND_UPDATE }
-                                                label="créer et éditer"
+                                                className="mx-2"
+                                                level={ BUTTON_TYPE.DANGER }
+                                                onClick={ () => this.onDeleteEmployeeClick(employee.id) }
+                                                label="supprimer"
                                             />
-                                            <Button
-                                                type="submit"
-                                                value={ ACTION.CREATE }
-                                                label="créer"
-                                            />
-                                        </div>
-                                    }
-                                    </div>
-                                </form>
-                            </div>
+                                        </td>
+                                    </tr>
+                                ))}
+                                </tbody>
+                            </table>
                         </div>
                     </div>
-
                 </div>
+                
+                <div className="col">
+                    <div className="card">
+                        <div className="card-header d-flex justify-content-between">
+                            <span>
+                                { this.state.employee.id ? 'Modification Employée' : 'Creation Employée'}
+                            </span>
+                            <Button
+                                level={ BUTTON_TYPE.SECONDARY }
+                                onClick={ this.onResetEmployeeClick }
+                                label="reset"
+                            />
+                        </div>
+                        <div className="card-body">
+                            <form onSubmit={ this.handleFormSubmit }>
+                                <div className="form-group row">
+                                    <label className="form-label">First Name:</label>
+                                    <div className="">
+                                        <input 
+                                            type="text" 
+                                            className="form-control" 
+                                            value={this.state.employee.firstname}
+                                            onChange={this.handleFirstNameChange}
+                                            required
+                                        />
+                                    </div>
+                                </div>
+                                <div className="form-group row">
+                                    <label className="form-label">Last Name:</label>
+                                    <div className="">
+                                    <input 
+                                        type="text" 
+                                        className="form-control" 
+                                        value={this.state.employee.lastname}
+                                        onChange={this.handleLastNameChange}
+                                        required
+                                    />
+                                    </div>
+                                </div>
+                                <div className="form-group row">
+                                    <label className="form-label">Job:</label>
+                                    <div className="">
+                                    <input 
+                                        type="text" 
+                                        className="form-control" 
+                                        value={this.state.employee.job}
+                                        onChange={this.handleJobChange}
+                                        required
+                                    />
+                                    </div>
+                                </div>
+                                <div className="form-group row">
+                                    <label className="form-label">Contact:</label>
+                                    <div className="">
+                                    <input 
+                                        type="text" 
+                                        className="form-control" 
+                                        value={this.state.employee.contact}
+                                        onChange={this.handleContactChange}
+                                        required
+                                    />
+                                    </div>
+                                </div>
+                                <div className="form-group row">
+                                    <label className="form-label">Adresse:</label>
+                                    <div className="">
+                                    <input 
+                                        type="text" 
+                                        className="form-control" 
+                                        value={this.state.employee.adress}
+                                        onChange={this.handleAdressChange}
+                                        required
+                                    />
+                                    </div>
+                                </div>
+                                <div className="form-group row mt-2">
+                                { this.state.employee.id ?
+                                    <div className="d-flex justify-content-end gap-2">
+                                        <Button
+                                            type="submit"
+                                            value={ ACTION.UPDATE }
+                                            label="modifier"
+                                        />
+                                    </div>
+                                : 
+                                    <div className="d-flex justify-content-end gap-2">
+                                        <Button
+                                            type="submit"
+                                            value={ ACTION.CREATE_AND_UPDATE }
+                                            label="créer et éditer"
+                                        />
+                                        <Button
+                                            type="submit"
+                                            value={ ACTION.CREATE }
+                                            label="créer"
+                                        />
+                                    </div>
+                                }
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         )
     }
