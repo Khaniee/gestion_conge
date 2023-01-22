@@ -1,5 +1,5 @@
 import { Component } from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 class Header extends Component{
     render(){
@@ -11,26 +11,26 @@ class Header extends Component{
             <div className="collapse navbar-collapse d-flex justify-content-between" id="navbarNav">
                 <ul className="navbar-nav">
                     <li className="nav-item">
-                        <Link className="nav-link" to="/demandeAbscence">Demande d'abscence</Link>
+                        <Link className="nav-link" to="/">REACT_FLASK</Link>
                     </li>
                     <li className="nav-item">
-                        <Link className="nav-link" to="/historiqueMesAbscence">Historique de mes abscences</Link>
+                        <NavLink className="nav-link" to="/demandeAbscence">Demande d'abscence</NavLink>
                     </li>
                     <li className="nav-item">
-                        <Link className="nav-link" to="/validationDemande">Validation demandes</Link>
+                        <NavLink className="nav-link" to="/historiqueMesAbscence">Historique de mes abscences</NavLink>
                     </li>
                     <li className="nav-item">
-                        <Link className="nav-link" to="/historiqueAbscence">Historique abscences</Link>
+                        <NavLink className="nav-link" to="/abscences">Liste des abscences</NavLink>
                     </li>
                     <li className="nav-item">
-                        <Link className="nav-link" to="/employees">Gestion des employées</Link>
+                        <NavLink className="nav-link" to="/employees">Gestion des employées</NavLink>
                     </li>
                     
                 </ul>
                 <ul className="m-0">
                     <li  className="nav-item">
-                        <a className="nav-link" href="">
-                        Se déconnecter
+                        <a className="nav-link" href="./#">
+                            Se déconnecter
                         </a>
                     </li>
                 </ul>

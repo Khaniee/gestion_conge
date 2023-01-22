@@ -1,15 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-// import App from './App';
 // import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import reportWebVitals from './reportWebVitals';
 
+import Header from './components/Header';
 
+import App from './App';
 import Login from './components/Login'
-import HistoriqueAbscence from './components/HistoriqueAbscence'
 import DemandeAbscence from './components/DemandeAbscence'
-import ValidationAbscence from './components/ValidationAbscence'
+import Abscences from './components/Abscences'
 import Employees from './components/Employees'
 import HistoriqueMesAbscence from './components/HistoriqueMesAbscence'
 
@@ -18,16 +18,17 @@ import {BrowserRouter, Routes, Route} from 'react-router-dom'
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-<BrowserRouter>
-<Routes>
-  <Route path="/" element={<Login/>}/>
-  <Route path="/demandeAbscence" element={<DemandeAbscence/>}/>
-  <Route path="/historiqueAbscence" element={<HistoriqueAbscence/>}/>
-  <Route path="/historiqueMesAbscence" element={<HistoriqueMesAbscence/>}/>
-  <Route path="/validationDemande" element={<ValidationAbscence/>}/>
-  <Route path="/employees" element={<Employees/>}/> 
-</Routes>
-</BrowserRouter>
+  <BrowserRouter>
+    <Header />
+    <Routes>
+      <Route path="/" element={<App/>}/>
+      <Route path="/login" element={<Login/>}/>
+      <Route path="/demandeAbscence" element={<DemandeAbscence/>}/>
+      <Route path="/historiqueMesAbscence" element={<HistoriqueMesAbscence/>}/>
+      <Route path="/abscences" element={<Abscences/>}/>
+      <Route path="/employees" element={<Employees/>}/> 
+    </Routes>
+  </BrowserRouter>
 );
 
 // If you want your app to work offline and load faster, you can change
