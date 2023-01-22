@@ -13,12 +13,9 @@ class Button extends Component {
 
     constructor(props) {
         super(props);
-        this.label = props.label;
         this.level = props.level ? props.level : BUTTON_TYPE.PRIMARY
         this.type = props.type ? props.type : "button"
         this.value = props.value ? props.value : ""
-        this.children = props.children;
-        this.className = props.className;
     }
 
     handleClick = () => {
@@ -30,10 +27,10 @@ class Button extends Component {
             <button
                 type={ this.type }
                 value={ this.value }
-                className={`btn btn-sm ${this.level} text-uppercase fw-bold ${this.className}`}
+                className={`btn btn-sm ${this.level} text-uppercase fw-bold ${this.props.className}`}
                 onClick={ this.handleClick }
             >
-                <small>{ this.children ? this.children : this.label }</small>
+                <small>{ this.props.children ? this.props.children : this.props.label }</small>
             </button>
         )
     }

@@ -276,27 +276,29 @@ class Employees extends Component {
                                     </div>
                                 </div>
                                 <div className="form-group row mt-2">
-                                { this.state.employee.id ?
-                                    <div className="d-flex justify-content-end gap-2">
-                                        <Button
-                                            type="submit"
-                                            value={ ACTION.UPDATE }
-                                            label="modifier"
-                                        />
-                                    </div>
-                                : 
-                                    <div className="d-flex justify-content-end gap-2">
-                                        <Button
-                                            type="submit"
-                                            value={ ACTION.CREATE_AND_UPDATE }
-                                            label="créer et éditer"
-                                        />
-                                        <Button
-                                            type="submit"
-                                            value={ ACTION.CREATE }
-                                            label="créer"
-                                        />
-                                    </div>
+                                {
+                                    this.state.employee.id ? (
+                                        <div className="d-flex justify-content-end gap-2">
+                                            <Button
+                                                type="submit"
+                                                value={ ACTION.UPDATE }
+                                                label="modifier"
+                                            />
+                                        </div>
+                                    ) : (
+                                        <div className="d-flex justify-content-end gap-2">
+                                            <Button
+                                                type="submit"
+                                                value={ ACTION.CREATE_AND_UPDATE }
+                                                label="créer et modifier"
+                                            />
+                                            <Button
+                                                type="submit"
+                                                value={ ACTION.CREATE }
+                                                label="créer"
+                                            />
+                                        </div>
+                                    )
                                 }
                                 </div>
                             </form>

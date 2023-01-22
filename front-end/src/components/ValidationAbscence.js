@@ -1,6 +1,6 @@
 import { Component } from "react";
 import Header from "./Header";
-import {useEffect} from 'react';
+
 class ValidationAbscence extends Component{
     constructor(props){
         super(props)
@@ -48,7 +48,7 @@ class ValidationAbscence extends Component{
                                 {abscences.map((e)=>(
                                     <tr>
                                     <td>{e.id}</td>
-                                    <td>{e.employee.lastname+" "+e.employee.firstname}</td>
+                                    <td>{e.employee ? e.employee.lastname+" "+e.employee.firstname : "Inconnu"}</td>
                                     <td>{e.date_demande}</td>
                                     <td>{e.date_debut}</td>
                                     <td>{e.date_fin}</td>
@@ -74,4 +74,4 @@ class ValidationAbscence extends Component{
     }
 }
 
-export default ValidationAbscence
+export default ValidationAbscence;
