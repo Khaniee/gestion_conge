@@ -12,6 +12,7 @@ import DemandeAbscence from './components/DemandeAbscence'
 import Abscences from './components/Abscences'
 import Employees from './components/Employees'
 import HistoriqueMesAbscence from './components/HistoriqueMesAbscence'
+import HistoriqueMesAbscence from './validationAbscence'
 
 
 import {BrowserRouter, Routes, Route} from 'react-router-dom'
@@ -23,7 +24,8 @@ root.render(
 <Header />
   <Route path="/" element={<Login/>}/>
   <Route path="/demandeAbscence" element={<DemandeAbscence/>}/>
-  <Route path="/historiqueMesAbscence" element={<HistoriqueMesAbscence/>}/>
+  <Route path="/historiqueAbscence" element={<HistoriqueAbscence/>}/>
+  <Route path="/validationDemande" element={<ValidationAbscence/>}/>
   <Route path="/employees" element={<Employees/>}/> 
 </Routes>
 </BrowserRouter>
