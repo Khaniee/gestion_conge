@@ -6,13 +6,11 @@ import reportWebVitals from './reportWebVitals';
 
 import Header from './components/Header';
 
-import App from './App';
 import Login from './components/Login'
 import DemandeAbscence from './components/DemandeAbscence'
-import Abscences from './components/Abscences'
 import Employees from './components/Employees'
 import HistoriqueMesAbscence from './components/HistoriqueMesAbscence'
-import HistoriqueMesAbscence from './validationAbscence'
+import ValidationAbscence from './components/ValidationAbscence'
 
 
 import {BrowserRouter, Routes, Route} from 'react-router-dom'
@@ -21,10 +19,10 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
 <BrowserRouter>
 <Routes>
-<Header />
+{/* <Header /> */}
   <Route path="/" element={<Login/>}/>
   <Route path="/demandeAbscence" element={<DemandeAbscence/>}/>
-  <Route path="/historiqueAbscence" element={<HistoriqueAbscence/>}/>
+  <Route path="/historiqueMesAbscence" element={<HistoriqueMesAbscence/>}/>
   <Route path="/validationDemande" element={<ValidationAbscence/>}/>
   <Route path="/employees" element={<Employees/>}/> 
 </Routes>
