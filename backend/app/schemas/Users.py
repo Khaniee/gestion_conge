@@ -1,9 +1,11 @@
 from pydantic import BaseModel
 from enum import Enum
 
+DEFAULT_PASSWORD = 'default'
+
 class UserPrivilege(str, Enum):
-    UTILISATEUR: str = "Utilisateur"
-    RESPONSABLE: str = "Responsable"
+    UTILISATEUR: str = "utilisateur"
+    RESPONSABLE: str = "responsable"
 
 class Users(BaseModel):
     login : str
