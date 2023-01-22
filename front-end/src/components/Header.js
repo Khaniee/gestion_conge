@@ -20,9 +20,6 @@ class Header extends Component{
                         <Link className="nav-link" to="/validationDemande">Validation demandes</Link>
                     </li>
                     <li className="nav-item">
-                        <Link className="nav-link" to="/historiqueAbscence">Historique abscences</Link>
-                    </li>
-                    <li className="nav-item">
                         <Link className="nav-link" to="/employees">Gestion des employées</Link>
                     </li>
                     

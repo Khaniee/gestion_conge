@@ -7,7 +7,6 @@ import reportWebVitals from './reportWebVitals';
 
 
 import Login from './components/Login'
-import HistoriqueAbscence from './components/HistoriqueAbscence'
 import DemandeAbscence from './components/DemandeAbscence'
 import ValidationAbscence from './components/ValidationAbscence'
 import Employees from './components/Employees'
@@ -22,7 +21,6 @@ root.render(
 <Routes>
   <Route path="/" element={<Login/>}/>
   <Route path="/demandeAbscence" element={<DemandeAbscence/>}/>
-  <Route path="/historiqueAbscence" element={<HistoriqueAbscence/>}/>
   <Route path="/historiqueMesAbscence" element={<HistoriqueMesAbscence/>}/>
   <Route path="/validationDemande" element={<ValidationAbscence/>}/>
   <Route path="/employees" element={<Employees/>}/> 
