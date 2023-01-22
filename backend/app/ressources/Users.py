@@ -17,13 +17,21 @@ def one_user(id : int, db: Session) -> dict:
     result = {"status": "success","message" : "affichage effectué avec succes","data":liste}
     return result
 
-def add_user(demande: UsersIn, db : Session) -> dict:
-    demandes = Users(**demande.dict())
-    db.add(demandes)
-    db.commit()
-    db.close()
-    result = {"status": "success", "message": "ajout effectué avec succes"}
-    return result
+def get_user(id : int, db_session: Session) -> Users:
+    """Retourne une instance de l'utilisateur avec l'identifiant correspondant
+    """
+    query = db_session.query(Users).filter(Users.id == id)
+    user : Users = query.one()
+    return user
+
+def add_user(user_serializer: UsersIn, db_session : Session) -> Users:
+    """Creer un utilisateur et retourn l'instance crée"""
+    user = Users(**user_serializer.dict())
+    db_session.add(user)
+    db_session.commit()
+    db_session.refresh(user)
+
+    return user
 
 def update_user( user_id: int, user_data: UsersIn, db_session: Session):
     query = db_session.query(Users)
