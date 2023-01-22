@@ -17,10 +17,6 @@ class Button extends Component {
         this.type = props.type ? props.type : "button"
         this.value = props.value ? props.value : ""
     }
-
-    handleClick = () => {
-        this.props.onClick();
-    }
     
     render(){
         return (
@@ -28,7 +24,7 @@ class Button extends Component {
                 type={ this.type }
                 value={ this.value }
                 className={`btn btn-sm ${this.level} text-uppercase fw-bold ${this.props.className}`}
-                onClick={ this.handleClick }
+                onClick={ () => this.props.onClick() }
             >
                 <small>{ this.props.children ? this.props.children : this.props.label }</small>
             </button>
