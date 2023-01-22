@@ -23,9 +23,7 @@ root.render(
 <Header />
   <Route path="/" element={<Login/>}/>
   <Route path="/demandeAbscence" element={<DemandeAbscence/>}/>
-  <Route path="/historiqueAbscence" element={<HistoriqueAbscence/>}/>
   <Route path="/historiqueMesAbscence" element={<HistoriqueMesAbscence/>}/>
-  <Route path="/validationDemande" element={<ValidationAbscence/>}/>
   <Route path="/employees" element={<Employees/>}/> 
 </Routes>
 </BrowserRouter>
