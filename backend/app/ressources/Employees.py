@@ -10,7 +10,10 @@ from pprint import pprint
 from sqlalchemy.exc import NoResultFound
 
 def all_employee(db: Session) -> dict:
-    liste = db.query(Employees).order_by(Employees.id).all()
+    try:
+        liste = db.query(Employees).order_by(Employees.id).all()
+    except NoResultFound:
+        liste = []
     for elt in liste:
         query = db.query(Users)
         query = query.filter(Users.id == elt.id_user)
