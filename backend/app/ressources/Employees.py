@@ -7,14 +7,17 @@ from app.ressources.Users import all_user, add_user, update_user, remove_user, g
 from app.schemas.Users import UsersIn, UserPrivilege, DEFAULT_PASSWORD
 
 from pprint import pprint
+from sqlalchemy.exc import NoResultFound
 
 def all_employee(db: Session) -> dict:
     liste = db.query(Employees).order_by(Employees.id).all()
     for elt in liste:
         query = db.query(Users)
         query = query.filter(Users.id == elt.id_user)
-        elt.user : Users = query.one()
-        del elt.id_user
+        try:
+            elt.user : Users = query.one()
+        except NoResultFound:
+            elt.user = None
     result = {"status": "success","message" : "affichage effectué avec succes","data":liste}
     return result
 

@@ -6,7 +6,7 @@ import {
     deleteEmployee,
     putEmployee,
 } from "../services/apiEmployee";
-import { askConfirmation, notify } from "../services/notify";
+import { askConfirmation, notify, NOTIFY_LEVEL } from "../services/notify";
 import Button, { BUTTON_TYPE } from "./widgets/Button";
 
 const ACTION = {
@@ -58,6 +58,10 @@ class Employees extends Component {
         const employee = {
             ...this.state.employees.find((employee) => employee.id === id)
         };
+        if (!employee.user) {
+            notify("Aucune utilisateur correspondante!", NOTIFY_LEVEL.ERROR);
+            return;
+        }
         employee.id_user = employee.user.id;
         // on suprimme l'attribut `user`
         // car l'attribut ne sert pas a grand choses ici
