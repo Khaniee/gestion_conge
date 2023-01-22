@@ -10,20 +10,12 @@ export const BUTTON_TYPE = {
 }
 
 class Button extends Component {
-
-    constructor(props) {
-        super(props);
-        this.level = props.level ? props.level : BUTTON_TYPE.PRIMARY
-        this.type = props.type ? props.type : "button"
-        this.value = props.value ? props.value : ""
-    }
-    
     render(){
         return (
             <button
-                type={ this.type }
-                value={ this.value }
-                className={`btn btn-sm ${this.level} text-uppercase fw-bold ${this.props.className}`}
+                type={ this.props.type ? this.props.type : "button"  }
+                value={ this.props.value ? this.props.value : "" }
+                className={`btn btn-sm ${ this.props.level ? this.props.level : BUTTON_TYPE.PRIMARY } text-uppercase fw-bold ${this.props.className}`}
                 onClick={ () => this.props.onClick() }
             >
                 <small>{ this.props.children ? this.props.children : this.props.label }</small>
