@@ -53,6 +53,7 @@ def add_employee(employee_serializer: EmployeesIn, db_session: Session) -> Emplo
     NB: L'utilisation de cette api crée automatiquement l'utilisateur correspondant
     """
     user_login = create_user_login(employee_serializer.firstname, employee_serializer.lastname)
+    print(f"[add_employee] user login just created: `{user_login}`")
 
     # création de l'utilisateur
     user_serializer = UsersIn(
@@ -61,11 +62,16 @@ def add_employee(employee_serializer: EmployeesIn, db_session: Session) -> Emplo
         privilege=UserPrivilege.UTILISATEUR.value,
     )
     user = add_user(user_serializer, db_session)
+    print("[add_employee] user have been created:")
+    pprint(vars(user))
 
     # création de l'employée
+    print(f"[add_employee] assign id_user of employee to: `{user.id}`")
     employee_serializer.id_user = user.id
     employee = Employees(**employee_serializer.dict())
     db_session.add(employee)
+    print("[add_employee] employee have been created:")
+    pprint(vars(user))
 
     # commit() des changement sur l'employee
     db_session.commit()
@@ -75,6 +81,9 @@ def add_employee(employee_serializer: EmployeesIn, db_session: Session) -> Emplo
     user_query =  db_session.query(Users).filter(Users.id == employee.id_user)
     employee.user = user_query.one()
     del employee.id_user
+
+    print("[add_employee] employee to return from api:")
+    pprint(vars(employee))
 
     return employee
 
