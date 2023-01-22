@@ -111,16 +111,13 @@ class DemandeAbscence extends Component{
             }
             console.log(response);
             
-            MySwal.fire(
-                "insertion effectué avec succès",
-                "",
-                "success"
-            )
             // réinitialise le formulaire pour permmetre
             // l'initiation d'une autre demande
             // NB: l'objet JQuery n'ayant pas la méthode nécessaire
             // on utilise l'Element DOM Javascript
             $('#demandeForm')[0].reset()
+            this.send()
+
         } catch (err) {
             MySwal.fire(
                 "erreur lors de l'insertion",
