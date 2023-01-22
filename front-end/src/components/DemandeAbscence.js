@@ -5,6 +5,8 @@ import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
 import './../css/demandeAbscence.css';
 
+import { ABSCENCES_STATUS } from "../services/apiAbscence";
+
 const MySwal = withReactContent(Swal)
 
 class DemandeAbscence extends Component{
@@ -174,7 +176,7 @@ class DemandeAbscence extends Component{
                                     <input type="date" className="form-control" name="date_fin" required></input>
                                     </div>
                                 </div>
-                                <input type="hidden" className="form-control" name="valide" value="" required></input>
+                                <input type="hidden" className="form-control" name="valide" value={ABSCENCES_STATUS.PENDING} required></input>
                                 <label className="form-label" >Motif</label>
                                 <textarea className="form-control" name="motif" rows="1" required>
 
