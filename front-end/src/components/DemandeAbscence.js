@@ -56,9 +56,6 @@ class DemandeAbscence extends Component{
         setTimeout(() => { 
             wrapper.classList.add("send")
             wrapper.style.transform = `translateY(${(boitePos.top - envPos.top)}px) translateX(${(boitePos.right - envPos.right + 200)}px) perspective(50px) translateZ(-200px) `
-            // alert(env.getBoundingClientRect().right)
-            // 797
-            // 764.5
         }, 1200);   
         setTimeout(() => { 
             MySwal.fire(
