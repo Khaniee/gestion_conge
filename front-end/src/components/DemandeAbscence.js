@@ -130,7 +130,7 @@ class DemandeAbscence extends Component{
         const {employees} = this.state
 
         return(
-            <div>
+            <div className="demandeAbscence">
                 {/* <Header /> */}
                 <img src="./images/boite.png" className="boite" id="boite" alt="dfgdg"/>
                     <img src="./images/trois.gif"  className="boite" id="ok" Style="display: none" alt=""/>

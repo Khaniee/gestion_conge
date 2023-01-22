@@ -16,7 +16,6 @@ class HistoriqueMesAbscence extends Component{
     render(){
         return(
             <div>
-                <Header />
                 <div className="card m-3">
                     <div className="card-header">
                         Historique de vos abscences
