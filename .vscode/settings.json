@@ -1,0 +1,11 @@
+{
+    "python.autoComplete.extraPaths": [
+        "./backend"
+    ],
+    "python.formatting.provider": "black",
+    "python.formatting.blackArgs": [
+        "--line-length",
+        "80",
+        "--experimental-string-processing"
+    ]
+}

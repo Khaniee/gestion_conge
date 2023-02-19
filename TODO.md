@@ -1,6 +1,7 @@
 # TODO
 
-- [ ] Enlever l'historique des abscences
-- [ ] validation des demandes => liste des demandes
+- [x] Enlever l'historique des abscences
+- [x] validation des demandes => liste des demandes
 - [ ] Faire fonctionner les logins
+- [ ] Faire fonctioner l'onglet historiques de mes congées
 - [x] Faire fonctionner le creation des employee
