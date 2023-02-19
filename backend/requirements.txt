@@ -6,3 +6,7 @@ requests==2.28.1
 pipenv==2022.9.8
 psycopg2-binary==2.8.6
 pymysql==1.0.2
+
+python-jose[cryptography]
+passlib[bcrypt]
+python-multipart
