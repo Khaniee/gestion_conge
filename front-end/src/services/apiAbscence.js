@@ -7,11 +7,19 @@ export const ABSCENCES_STATUS = {
 }
 
 export const getAbscences = async () => {
-    const url= "http://localhost:8000/api/abscences/"
+    const url = "http://localhost:8000/api/abscences/"
     const res = await fetch(url);
     const data = await res.json();
-    
+
     return data["data"];
+}
+
+export const getAbscenceByEmployeeId = async (id) => {
+    const url = `http://localhost:8000/api/employees/${id}/abscences/`
+    const res = await fetch(url);
+    const data = await res.json();
+
+    return data;
 }
 
 /**

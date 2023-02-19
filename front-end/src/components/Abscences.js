@@ -1,19 +1,24 @@
 import { Component } from "react";
 
+import { checkAuthentification } from '../common/with-authentification';
 import { getAbscences, putAbscence, ABSCENCES_STATUS } from "../services/apiAbscence";
+import { withRouter } from "../common/with-router";
+
 import Button, { BUTTON_TYPE } from "./widgets/Button";
 
 import { askConfirmation, notify } from "../services/notify";
-class ValidationAbscence extends Component{
-    constructor(props){
+class ValidationAbscence extends Component {
+    constructor(props) {
         super(props)
-        this.state={
-            abscences : []
+        this.state = {
+            abscences: []
         }
     }
-    componentDidMount = async ()=>{
+    componentDidMount = async () => {
+        checkAuthentification(this.props.router);
+
         const abscences = await getAbscences();
-        this.setState({abscences: abscences});
+        this.setState({ abscences: abscences });
     }
     handleAcceptBtnClick = async (id) => {
         let abscence = {
@@ -56,9 +61,9 @@ class ValidationAbscence extends Component{
         this.setState({ abscences });
     }
 
-    render(){
-        const {abscences}= this.state
-        return(
+    render() {
+        const { abscences } = this.state
+        return (
             <div className="card m-3">
                 <div className="card-header">
                     Demandes d'abscence
@@ -78,43 +83,43 @@ class ValidationAbscence extends Component{
                             </tr>
                         </thead>
                         <tbody>
-                            {abscences.map((e)=>(
+                            {abscences.map((e) => (
                                 <tr>
-                                <td className="fw-bold">{e.id}</td>
-                                <td>
-                                { (e.valide === ABSCENCES_STATUS.ACCEPTED) ? (
-                                    <span className="badge bg-success">Acceptée</span>
-                                ) : (e.valide === ABSCENCES_STATUS.REJECTED) ? (
-                                    <span className="badge bg-danger">Refusée</span>
-                                ) : (
-                                    <span className="badge bg-warning">En attente</span>
-                                )}
-                                </td>
-                                <td>{e.employee  ? e.employee.lastname+" "+e.employee.firstname : "Inconnu"}</td>
-                                <td>{e.date_demande}</td>
-                                <td>{e.date_debut}</td>
-                                <td>{e.date_fin}</td>
-                                <td>{e.motif}</td>
-                                { (e.valide === ABSCENCES_STATUS.PENDING) ? (
+                                    <td className="fw-bold">{e.id}</td>
                                     <td>
-                                        <Button
-                                            className="mx-1"
-                                            level={BUTTON_TYPE.SUCCESS}
-                                            label="Accepter"
-                                            onClick={ () => this.handleAcceptBtnClick(e.id) }
-                                        />
-                                        <Button
-                                            className="mx-1"
-                                            level={BUTTON_TYPE.DANGER}
-                                            label="Refuser"
-                                            onClick={() => this.handleDeclineBtnClick(e.id) }
-                                        />
+                                        {(e.valide === ABSCENCES_STATUS.ACCEPTED) ? (
+                                            <span className="badge bg-success">Acceptée</span>
+                                        ) : (e.valide === ABSCENCES_STATUS.REJECTED) ? (
+                                            <span className="badge bg-danger">Refusée</span>
+                                        ) : (
+                                            <span className="badge bg-warning">En attente</span>
+                                        )}
                                     </td>
-                                ) : (
-                                    <td></td>
-                                )}
-                            </tr>
-                        ))}
+                                    <td>{e.employee ? e.employee.lastname + " " + e.employee.firstname : "Inconnu"}</td>
+                                    <td>{e.date_demande}</td>
+                                    <td>{e.date_debut}</td>
+                                    <td>{e.date_fin}</td>
+                                    <td>{e.motif}</td>
+                                    {(e.valide === ABSCENCES_STATUS.PENDING) ? (
+                                        <td>
+                                            <Button
+                                                className="mx-1"
+                                                level={BUTTON_TYPE.SUCCESS}
+                                                label="Accepter"
+                                                onClick={() => this.handleAcceptBtnClick(e.id)}
+                                            />
+                                            <Button
+                                                className="mx-1"
+                                                level={BUTTON_TYPE.DANGER}
+                                                label="Refuser"
+                                                onClick={() => this.handleDeclineBtnClick(e.id)}
+                                            />
+                                        </td>
+                                    ) : (
+                                        <td></td>
+                                    )}
+                                </tr>
+                            ))}
                         </tbody>
                     </table>
                 </div>
@@ -123,4 +128,4 @@ class ValidationAbscence extends Component{
     }
 }
 
-export default ValidationAbscence
+export default withRouter(ValidationAbscence)

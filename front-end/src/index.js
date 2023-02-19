@@ -4,30 +4,14 @@ import './index.css';
 // import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import reportWebVitals from './reportWebVitals';
 
-import Header from './components/Header';
-
 import App from './App';
-import Login from './components/Login'
-import DemandeAbscence from './components/DemandeAbscence'
-import Abscences from './components/Abscences'
-import Employees from './components/Employees'
-import HistoriqueMesAbscence from './components/HistoriqueMesAbscence'
-
-import {BrowserRouter, Routes, Route} from 'react-router-dom'
+import { BrowserRouter } from 'react-router-dom';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-<BrowserRouter>
-  <Header />
-  <Routes>
-        <Route path="/" element={<App/>}/>
-        <Route path="/login" element={<Login/>}/>
-        <Route path="/demandeAbscence" element={<DemandeAbscence/>}/>
-        <Route path="/historiqueMesAbscence" element={<HistoriqueMesAbscence/>}/>
-        <Route path="/abscences" element={<Abscences/>}/>
-        <Route path="/employees" element={<Employees/>}/> 
-  </Routes>
-</BrowserRouter>
+  <BrowserRouter>
+    <App />
+  </BrowserRouter>
 );
 
 // If you want your app to work offline and load faster, you can change

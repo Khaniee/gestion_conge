@@ -1,6 +1,10 @@
 import { Component } from "react";
 
-import { 
+import { checkAuthentification } from '../common/with-authentification';
+import { withRouter } from "../common/with-router";
+
+
+import {
     getEmployees,
     postEmployee,
     deleteEmployee,
@@ -17,9 +21,9 @@ const ACTION = {
 
 class Employees extends Component {
 
-    constructor(props){
+    constructor(props) {
         super(props)
-        this.state={
+        this.state = {
             employee: this.getInitialForm(),
             employees: []
         }
@@ -36,8 +40,10 @@ class Employees extends Component {
             id_user: 0,
         };
     }
-    componentDidMount = ()=>{
+
+    componentDidMount = () => {
         this.setEmployees();
+        checkAuthentification(this.props.router);
     }
     setEmployees = async () => {
         try {
@@ -66,7 +72,7 @@ class Employees extends Component {
         // on suprimme l'attribut `user`
         // car l'attribut ne sert pas a grand choses ici
         delete employee.user
-        this.setState( { employee } )
+        this.setState({ employee })
     }
     // click on the update button in the list
     onUpdateEmployeeClick = (id) => {
@@ -155,8 +161,8 @@ class Employees extends Component {
         employee.adress = event.target.value;
         this.setState({ employee })
     }
-    render(){
-        return(
+    render() {
+        return (
             <div className="row m-3">
                 <div className="col-9">
                     <div className="card">
@@ -176,55 +182,55 @@ class Employees extends Component {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                { this.state.employees.map((employee) => (
-                                    <tr key={ employee.id }>
-                                        <td>{ employee.id }</td>
-                                        <td>{ employee.firstname } { employee.lastname }</td>
-                                        <td>{ employee.job }</td>
-                                        <td>{ employee.adress }</td>
-                                        <td>{ employee.contact }</td>
-                                        <td>
-                                            <Button
-                                                className="mx-1"
-                                                level={ BUTTON_TYPE.WARNING }
-                                                onClick={ () => this.onUpdateEmployeeClick(employee.id) }
-                                                label="modifier"
-                                            />
-                                            <Button
-                                                className="mx-1"
-                                                level={ BUTTON_TYPE.DANGER }
-                                                onClick={ () => this.onDeleteEmployeeClick(employee.id) }
-                                                label="supprimer"
-                                            />
-                                        </td>
-                                    </tr>
-                                ))}
+                                    {this.state.employees.map((employee) => (
+                                        <tr key={employee.id}>
+                                            <td>{employee.id}</td>
+                                            <td>{employee.firstname} {employee.lastname}</td>
+                                            <td>{employee.job}</td>
+                                            <td>{employee.adress}</td>
+                                            <td>{employee.contact}</td>
+                                            <td>
+                                                <Button
+                                                    className="mx-1"
+                                                    level={BUTTON_TYPE.WARNING}
+                                                    onClick={() => this.onUpdateEmployeeClick(employee.id)}
+                                                    label="modifier"
+                                                />
+                                                <Button
+                                                    className="mx-1"
+                                                    level={BUTTON_TYPE.DANGER}
+                                                    onClick={() => this.onDeleteEmployeeClick(employee.id)}
+                                                    label="supprimer"
+                                                />
+                                            </td>
+                                        </tr>
+                                    ))}
                                 </tbody>
                             </table>
                         </div>
                     </div>
                 </div>
-                
+
                 <div className="col">
                     <div className="card">
                         <div className="card-header d-flex justify-content-between">
                             <span>
-                                { this.state.employee.id ? 'Modification Employée' : 'Creation Employée'}
+                                {this.state.employee.id ? 'Modification Employée' : 'Creation Employée'}
                             </span>
                             <Button
-                                level={ BUTTON_TYPE.SECONDARY }
-                                onClick={ this.onResetEmployeeClick }
+                                level={BUTTON_TYPE.SECONDARY}
+                                onClick={this.onResetEmployeeClick}
                                 label="reset"
                             />
                         </div>
                         <div className="card-body">
-                            <form onSubmit={ this.handleFormSubmit }>
+                            <form onSubmit={this.handleFormSubmit}>
                                 <div className="form-group row">
                                     <label className="form-label">First Name:</label>
                                     <div className="">
-                                        <input 
-                                            type="text" 
-                                            className="form-control" 
+                                        <input
+                                            type="text"
+                                            className="form-control"
                                             value={this.state.employee.firstname}
                                             onChange={this.handleFirstNameChange}
                                             required
@@ -234,76 +240,76 @@ class Employees extends Component {
                                 <div className="form-group row">
                                     <label className="form-label">Last Name:</label>
                                     <div className="">
-                                    <input 
-                                        type="text" 
-                                        className="form-control" 
-                                        value={this.state.employee.lastname}
-                                        onChange={this.handleLastNameChange}
-                                        required
-                                    />
+                                        <input
+                                            type="text"
+                                            className="form-control"
+                                            value={this.state.employee.lastname}
+                                            onChange={this.handleLastNameChange}
+                                            required
+                                        />
                                     </div>
                                 </div>
                                 <div className="form-group row">
                                     <label className="form-label">Job:</label>
                                     <div className="">
-                                    <input 
-                                        type="text" 
-                                        className="form-control" 
-                                        value={this.state.employee.job}
-                                        onChange={this.handleJobChange}
-                                        required
-                                    />
+                                        <input
+                                            type="text"
+                                            className="form-control"
+                                            value={this.state.employee.job}
+                                            onChange={this.handleJobChange}
+                                            required
+                                        />
                                     </div>
                                 </div>
                                 <div className="form-group row">
                                     <label className="form-label">Contact:</label>
                                     <div className="">
-                                    <input 
-                                        type="text" 
-                                        className="form-control" 
-                                        value={this.state.employee.contact}
-                                        onChange={this.handleContactChange}
-                                        required
-                                    />
+                                        <input
+                                            type="text"
+                                            className="form-control"
+                                            value={this.state.employee.contact}
+                                            onChange={this.handleContactChange}
+                                            required
+                                        />
                                     </div>
                                 </div>
                                 <div className="form-group row">
                                     <label className="form-label">Adresse:</label>
                                     <div className="">
-                                    <input 
-                                        type="text" 
-                                        className="form-control" 
-                                        value={this.state.employee.adress}
-                                        onChange={this.handleAdressChange}
-                                        required
-                                    />
+                                        <input
+                                            type="text"
+                                            className="form-control"
+                                            value={this.state.employee.adress}
+                                            onChange={this.handleAdressChange}
+                                            required
+                                        />
                                     </div>
                                 </div>
                                 <div className="form-group row mt-2">
-                                {
-                                    this.state.employee.id ? (
-                                        <div className="d-flex justify-content-end gap-2">
-                                            <Button
-                                                type="submit"
-                                                value={ ACTION.UPDATE }
-                                                label="modifier"
-                                            />
-                                        </div>
-                                    ) : (
-                                        <div className="d-flex justify-content-end gap-2">
-                                            <Button
-                                                type="submit"
-                                                value={ ACTION.CREATE_AND_UPDATE }
-                                                label="créer et modifier"
-                                            />
-                                            <Button
-                                                type="submit"
-                                                value={ ACTION.CREATE }
-                                                label="créer"
-                                            />
-                                        </div>
-                                    )
-                                }
+                                    {
+                                        this.state.employee.id ? (
+                                            <div className="d-flex justify-content-end gap-2">
+                                                <Button
+                                                    type="submit"
+                                                    value={ACTION.UPDATE}
+                                                    label="modifier"
+                                                />
+                                            </div>
+                                        ) : (
+                                            <div className="d-flex justify-content-end gap-2">
+                                                <Button
+                                                    type="submit"
+                                                    value={ACTION.CREATE_AND_UPDATE}
+                                                    label="créer et modifier"
+                                                />
+                                                <Button
+                                                    type="submit"
+                                                    value={ACTION.CREATE}
+                                                    label="créer"
+                                                />
+                                            </div>
+                                        )
+                                    }
                                 </div>
                             </form>
                         </div>
@@ -314,4 +320,4 @@ class Employees extends Component {
         )
     }
 }
-export default Employees
+export default withRouter(Employees)
